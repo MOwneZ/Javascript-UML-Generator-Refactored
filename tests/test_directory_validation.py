@@ -57,3 +57,9 @@ class TestValidateDirectory(TestCase):
                                    self.current_dir).replace("\\", "/")]
         self.dir_reader.set_directory(valid_dir)
         self.assertEqual(self.dir_reader.get_file_dirs(), js_file_dirs)
+
+    def test_input_not_a_dir(self):
+        """Tests to see whether the DirectoryReader class rejects a clearly
+        invalid directory link."""
+        invalid_dir = "@@@@@This is not a directory.@@@@@"
+        self.assertFalse(self.dir_reader.is_valid_js_dir(invalid_dir))

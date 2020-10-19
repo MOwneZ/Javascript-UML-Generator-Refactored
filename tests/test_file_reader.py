@@ -59,3 +59,16 @@ class TestFileReader(TestCase):
         file_dir = str.format("{}/testing_files/test_file_empty.js",
                               self.current_dir).replace("\\", "/")
         self.assertTrue(self.file_reader.is_valid_file(file_dir))
+
+    def test_is_valid_file_dir(self):
+        """This tests to see whether it correctly returns true on a valid
+        file directory."""
+        file_dir = str.format("{}/testing_files/test_file_empty.js",
+                              self.current_dir).replace("\\", "/")
+        self.assertTrue(self.file_reader.is_valid_file_dir(file_dir))
+
+    def test_is_invalid_file_dir(self):
+        """This tests to see whether it correctly returns false on an invalid
+        file directory."""
+        file_dir = "Bad times! No."
+        self.assertFalse(self.file_reader.is_valid_file_dir(file_dir))
