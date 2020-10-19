@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 from src.model.file_reader import FileReader
 from src.model.js_parser import JsParser
 from src.model.directory_reader import DirectoryReader
-=======
-from model.file_reader import FileReader
-from model.js_parser import JsParser
-from model.directory_reader import DirectoryReader
->>>>>>> 4121c4aa46b2359339e8e69b09720bea30b9c4dd
 from cmd import Cmd
 from os import listdir
 
@@ -120,13 +114,9 @@ class View(Cmd):
         """This command uses all the information provided so far and will
         produce a diagram based on input. """
         directory = arg.replace("\\", "/")
-<<<<<<< HEAD
-        if self.dir_reader.is_valid_js_dir(directory) is True:
-=======
         if self.dir_reader.is_valid_js_dir(directory) \
                 and self.selected_file_type\
                 and self.selected_output_dir is True:
->>>>>>> 4121c4aa46b2359339e8e69b09720bea30b9c4dd
             for file in listdir(directory):
                 file_dir = directory + "/" + file
                 self.js_reader.set_js_file(
