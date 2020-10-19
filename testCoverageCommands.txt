@@ -1,0 +1,3 @@
+coverage run --branch --source=src run_tests.py
+coverage report -m
+coverage html
