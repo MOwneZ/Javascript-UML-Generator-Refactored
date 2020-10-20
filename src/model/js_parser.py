@@ -42,8 +42,7 @@ class JsParser:
     def __get_class_methods(self, new_class_body):
         methods = []
         for value in new_class_body:
-            if value.type == "MethodDefinition":
-                methods.append(value.key.name)
+            methods.append(value.key.name)
         return methods
 
     def __add_class(self, new_class):
