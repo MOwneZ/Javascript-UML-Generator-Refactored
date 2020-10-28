@@ -1,4 +1,4 @@
-from ViewController import View
+from src.ViewController import View
 
 
 TheView = View()

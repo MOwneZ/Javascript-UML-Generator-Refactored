@@ -25,7 +25,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_class = self.js_parser.all_my_classes[0]
+        actual_class = self.js_parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_class_no_methods_attributes(self):
@@ -40,7 +40,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_class = self.js_parser.all_my_classes[0]
+        actual_class = self.js_parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_class_no_methods(self):
@@ -55,7 +55,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_class = self.js_parser.all_my_classes[0]
+        actual_class = self.js_parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_multiple_classes(self):
@@ -78,7 +78,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_classes = self.js_parser.all_my_classes
+        actual_classes = self.js_parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_no_classes(self):
@@ -90,7 +90,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_classes = self.js_parser.all_my_classes
+        actual_classes = self.js_parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_entire_class(self):
@@ -102,7 +102,7 @@ class TestJsParser(TestCase):
         js_file = self.file_reader.get_file_contents(file_dir)
         self.js_parser.set_js_file(js_file)
         self.js_parser.parse_js_file()
-        actual_classes = self.js_parser.all_my_classes
+        actual_classes = self.js_parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_entire_dir(self):
@@ -116,5 +116,5 @@ class TestJsParser(TestCase):
             js_file = self.file_reader.get_file_contents(aDir)
             self.js_parser.set_js_file(js_file)
             self.js_parser.parse_js_file()
-        actual_class_count = len(self.js_parser.all_my_classes)
+        actual_class_count = len(self.js_parser.get_classes())
         self.assertEqual(expected_class_count, actual_class_count)

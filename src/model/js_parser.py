@@ -5,7 +5,10 @@ class JsParser:
     def __init__(self):
         self.__js_file = ""
         self.__js_file_parsed = {}
-        self.all_my_classes = []
+        self.__all_my_classes = []
+
+    def get_classes(self):
+        return self.__all_my_classes
 
     def set_js_file(self, new_file):
         self.__js_file = new_file
@@ -46,5 +49,5 @@ class JsParser:
         return methods
 
     def __add_class(self, new_class):
-        if new_class not in self.all_my_classes:
-            self.all_my_classes.append(new_class)
+        if new_class not in self.__all_my_classes:
+            self.__all_my_classes.append(new_class)

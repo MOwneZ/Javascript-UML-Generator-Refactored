@@ -12,6 +12,11 @@ class DirectoryReader:
         self.__all_my_files = listdir(new_folder_path)
         self.__set_file_dirs()
 
+    def is_valid_js_file(self, new_file_path):
+        """Will return true if the provided path\
+         is a javascript file. (.js)"""
+        return path.isfile(new_file_path) and new_file_path.endswith(".js")
+
     def is_valid_js_dir(self, new_folder_path):
         """Will return true if the provided directory\
          contains at least 1 javascript file. (.js)"""

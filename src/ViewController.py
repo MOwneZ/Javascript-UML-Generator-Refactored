@@ -32,9 +32,7 @@ class View(Cmd):
             self.name = arg
             print(str.format("Name set to {}!", self.name))
         else:
-            print(
-                "Please provide a name! You do not have to do this step if "
-                "you do not want to. It's ok, really.")
+            print("Please provide a name.")
 
     def do_exit(self, arg):
         """This command closes the command line."""
@@ -67,10 +65,7 @@ class View(Cmd):
             print("set file type to png!")
             self.selected_file_type = True
         else:
-            print(
-                "incorrect file type. Please type the command followed by "
-                "either -jpg or -j for jpg, and -p or -png "
-                "for png.")
+            print("incorrect file type.")
 
     def do_instructions(self, arg):
         """Provides instructions for using the program. Complete commands in
@@ -115,19 +110,18 @@ class View(Cmd):
         produce a diagram based on input. """
         directory = arg.replace("\\", "/")
         if self.dir_reader.is_valid_js_dir(directory) \
+                or self.dir_reader.is_valid_js_file(directory)\
                 and self.selected_file_type\
                 and self.selected_output_dir is True:
             for file in listdir(directory):
-                file_dir = directory + "/" + file
+                file_dir = "{}/{}".format(directory, file)
                 self.js_reader.set_js_file(
                     self.file_reader.get_file_contents(file_dir))
                 self.js_reader.parse_js_file()
-            for aClass in self.js_reader.all_my_classes:
+            for aClass in self.js_reader.get_classes():
                 print(aClass)
         else:
-            print(
-                "Please select an output directory and/or provide a valid "
-                "input directory.")
+            print("Set output dir, file type, or provide valid input dir.")
 
     def start(self):
         """Simple function which starts the program."""

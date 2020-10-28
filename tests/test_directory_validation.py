@@ -21,6 +21,18 @@ class TestValidateDirectory(TestCase):
         valid_dir = self.current_dir
         self.assertTrue(self.dir_reader.is_valid_folder_dir(valid_dir))
 
+    def test_good_js_dir(self):
+        """Tests to see whether the DirectoryReader class can correctly
+        validate a good js directory."""
+        valid_dir = "{}/testing_files/test_file_1.js".format(self.current_dir)
+        self.assertTrue(self.dir_reader.is_valid_js_file(valid_dir))
+
+    def test_bad_js_dir(self):
+        """Tests to see whether the DirectoryReader class can correctly
+        reject a good js directory."""
+        valid_dir = "{}/testing_files/te.js".format(self.current_dir)
+        self.assertFalse(self.dir_reader.is_valid_js_file(valid_dir))
+
     def test_forward_slash_folder_dir(self):
         """Tests to see whether the DirectoryReader class can correctly
         validate a directory with forward slashes. """
