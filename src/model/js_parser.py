@@ -1,4 +1,5 @@
 from esprima import parse
+from src.model.parser import Parser
 
 
 class JsParser:
