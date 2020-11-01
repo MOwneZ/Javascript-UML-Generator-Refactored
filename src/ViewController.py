@@ -122,7 +122,3 @@ class View(Cmd):
                 print(aClass)
         else:
             print("Set output dir, file type, or provide valid input dir.")
-
-    def start(self):
-        """Simple function which starts the program."""
-        self.cmdloop()
