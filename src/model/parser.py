@@ -35,10 +35,10 @@ class Parser:
                     self.add_class(single_class)
 
     def _get_class_name(self, new_value):
-        pass
+        raise NotImplementedError
 
     def _get_class_attributes(self, new_class_body):
-        pass
+        raise NotImplementedError
 
     def _get_class_methods(self, new_class_body):
-        pass
+        raise NotImplementedError
