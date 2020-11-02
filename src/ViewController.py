@@ -1,5 +1,6 @@
 from src.model.file_reader import FileReader
-from src.model.js_parser import JsParser
+from src.model.js_parser_builder import JSParserBuilder
+from src.model.parser_director import ParserDirector
 from src.model.directory_reader import DirectoryReader
 from cmd import Cmd
 from os import listdir
@@ -22,7 +23,7 @@ class View(Cmd):
         self.selected_file_type = False
         self.file_reader = FileReader()
         self.dir_reader = DirectoryReader()
-        self.js_reader = JsParser()
+        self.parser = None
 
     def do_set_name(self, arg):
         """This option allows to set your name, which can be added to the
@@ -113,12 +114,19 @@ class View(Cmd):
                 or self.dir_reader.is_valid_js_file(directory)\
                 and self.selected_file_type\
                 and self.selected_output_dir is True:
+
             for file in listdir(directory):
+
                 file_dir = "{}/{}".format(directory, file)
-                self.js_reader.set_file(
-                    self.file_reader.get_file_contents(file_dir))
-                self.js_reader.parse_file()
-            for aClass in self.js_reader.get_classes():
-                print(aClass)
+                a_file = self.file_reader.get_file_contents(file_dir)
+
+                js_parser_builder = JSParserBuilder()
+                parser_director = ParserDirector(js_parser_builder)
+                parser_director.make_js_parser()
+                self.parser = js_parser_builder.get_parser()
+                self.parser.set_file(a_file)
+                self.parser.parse_file()
+                for aClass in self.parser.get_classes():
+                    print(aClass)
         else:
             print("Set output dir, file type, or provide valid input dir.")

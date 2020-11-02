@@ -137,7 +137,7 @@ class TestFileReader(TestCase):
         self.the_view.do_set_file_type(arg_file_type)
         self.the_view.do_create_uml(arg)
         self.assertEqual(expected_classes,
-                         self.the_view.js_reader.get_classes())
+                         self.the_view.parser.get_classes())
 
     def test_help_all(self):
         with patch('sys.stdout', new=StringIO()) as print_output:

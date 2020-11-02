@@ -18,22 +18,31 @@ class Parser(metaclass=ABCMeta):
         self._parsed_file = parse(self._file)
         self._set_classes()
 
-    @abstractmethod
+    def add_class(self, new_class):
+        if new_class not in self._all_my_classes:
+            self._all_my_classes.append(new_class)
+
     def _set_classes(self):
+        for key, value in self._parsed_file.items():
+            if key == "body":
+                for aValue in value:
+                    single_class = {"name": (self.__get_class_name(aValue)),
+                                    "attributes":
+                                        (self.__get_class_attributes(
+                                            aValue.body.body)),
+                                    "methods":
+                                        self.__get_class_methods(
+                                            aValue.body.body)}
+                    self.add_class(single_class)
+
+    @abstractmethod
+    def __get_class_name(self, new_value):
         raise NotImplementedError
 
     @abstractmethod
-    def _get_class_name(self, new_value):
+    def __get_class_attributes(self, new_class_body):
         raise NotImplementedError
 
     @abstractmethod
-    def _get_class_attributes(self, new_class_body):
-        raise NotImplementedError
-
-    @abstractmethod
-    def _get_class_methods(self, new_class_body):
-        raise NotImplementedError
-
-    @abstractmethod
-    def _add_class(self, new_class):
+    def __get_class_methods(self, new_class_body):
         raise NotImplementedError
