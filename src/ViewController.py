@@ -122,8 +122,8 @@ class View(Cmd):
 
                 js_parser_builder = JSParserBuilder()
                 parser_director = ParserDirector(js_parser_builder)
-                parser_director.make_js_parser()
-                self.parser = js_parser_builder.get_parser()
+
+                self.parser = parser_director.make_js_parser()
                 self.parser.set_file(a_file)
                 self.parser.parse_file()
                 for aClass in self.parser.get_classes():

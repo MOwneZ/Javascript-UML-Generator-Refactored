@@ -18,8 +18,7 @@ class TestJsParser(TestCase):
     def build_parser(self):
         js_parser_builder = JSParserBuilder()
         parser_director = ParserDirector(js_parser_builder)
-        parser_director.make_js_parser()
-        self.js_parser = js_parser_builder.get_parser()
+        self.js_parser = parser_director.make_js_parser()
 
     def test_basic_class(self):
         """Tests to see whether it can correctly read a js file with a

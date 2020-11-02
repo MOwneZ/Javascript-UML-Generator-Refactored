@@ -17,3 +17,6 @@ class ParserBuilder(metaclass=ABCMeta):
     @abstractmethod
     def set_get_class_name(self):
         raise NotImplementedError
+
+    def get_parser(self):
+        return self.parser
