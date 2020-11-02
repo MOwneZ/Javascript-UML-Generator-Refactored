@@ -4,36 +4,36 @@ from abc import abstractmethod, ABCMeta
 
 class Parser(metaclass=ABCMeta):
     def __init__(self):
-        self.__file = str()
-        self.__parsed_file = {}
-        self.__all_my_classes = []
+        self._file = str()
+        self._parsed_file = {}
+        self._all_my_classes = []
 
     def get_classes(self):
-        return self.__all_my_classes
+        return self._all_my_classes
 
     def set_file(self, new_file):
-        self.__file = new_file
+        self._file = new_file
 
     def parse_file(self):
-        self.__parsed_file = parse(self.__file)
-        self.__set_classes()
+        self._parsed_file = parse(self._file)
+        self._set_classes()
 
     @abstractmethod
-    def __set_classes(self):
-        ...
+    def _set_classes(self):
+        raise NotImplementedError
 
     @abstractmethod
-    def __get_class_name(self, new_value):
-        ...
+    def _get_class_name(self, new_value):
+        raise NotImplementedError
 
     @abstractmethod
-    def __get_class_attributes(self, new_class_body):
-        ...
+    def _get_class_attributes(self, new_class_body):
+        raise NotImplementedError
 
     @abstractmethod
-    def __get_class_methods(self, new_class_body):
-        ...
+    def _get_class_methods(self, new_class_body):
+        raise NotImplementedError
 
     @abstractmethod
-    def __add_class(self, new_class):
-        ...
+    def _add_class(self, new_class):
+        raise NotImplementedError

@@ -115,9 +115,9 @@ class View(Cmd):
                 and self.selected_output_dir is True:
             for file in listdir(directory):
                 file_dir = "{}/{}".format(directory, file)
-                self.js_reader.set_js_file(
+                self.js_reader.set_file(
                     self.file_reader.get_file_contents(file_dir))
-                self.js_reader.parse_js_file()
+                self.js_reader.parse_file()
             for aClass in self.js_reader.get_classes():
                 print(aClass)
         else:
