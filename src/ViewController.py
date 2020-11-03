@@ -13,7 +13,7 @@ class View(Cmd):
         self.intro = "\nwelcome to this cmd. type help_all for a list of " \
                      "commands,\nor for a specific command type 'help'" \
                      "followed by the command.\n" \
-                     "Some commands require others to be completed first. If "\
+                     "Some commands require others to be completed first. If " \
                      "lost, use the help menu."
         self.prompt = "==>  "
         self.name = ""
@@ -111,21 +111,16 @@ class View(Cmd):
         produce a diagram based on input. """
         directory = arg.replace("\\", "/")
         if self.dir_reader.is_valid_js_dir(directory) \
-                or self.dir_reader.is_valid_js_file(directory)\
-                and self.selected_file_type\
+                or self.dir_reader.is_valid_js_file(directory) \
+                and self.selected_file_type \
                 and self.selected_output_dir is True:
 
             for file in listdir(directory):
 
                 file_dir = "{}/{}".format(directory, file)
                 a_file = self.file_reader.get_file_contents(file_dir)
-
-                js_parser_builder = JSParserBuilder()
-                parser_director = ParserDirector(js_parser_builder)
-
-                self.parser = parser_director.make_js_parser()
-                self.parser.set_file(a_file)
-                self.parser.parse_file()
+                parser_director = ParserDirector(JSParserBuilder())
+                self.parser = parser_director.make_parser(a_file)
                 for aClass in self.parser.get_classes():
                     print(aClass)
         else:
