@@ -9,16 +9,10 @@ from src.model.directory_reader import DirectoryReader
 class TestJsParser(TestCase):
 
     def setUp(self):
-        self.js_parser = None
+        self.parser = None
         self.file_reader = FileReader()
         self.dir_reader = DirectoryReader()
         self.current_dir = getcwd() + "/tests"
-        self.build_parser()
-
-    def build_parser(self):
-        js_parser_builder = JSParserBuilder()
-        parser_director = ParserDirector(js_parser_builder)
-        self.js_parser = parser_director.make_js_parser()
 
     def test_basic_class(self):
         """Tests to see whether it can correctly read a js file with a
@@ -30,9 +24,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_1.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_class = self.js_parser.get_classes()[0]
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_class = self.parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_class_no_methods_attributes(self):
@@ -45,9 +39,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_3.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_class = self.js_parser.get_classes()[0]
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_class = self.parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_class_no_methods(self):
@@ -60,9 +54,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_6.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_class = self.js_parser.get_classes()[0]
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_class = self.parser.get_classes()[0]
         self.assertEqual(expected_class, actual_class)
 
     def test_multiple_classes(self):
@@ -83,9 +77,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_2.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_classes = self.js_parser.get_classes()
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_classes = self.parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_no_classes(self):
@@ -95,9 +89,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_empty.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_classes = self.js_parser.get_classes()
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_classes = self.parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_entire_class(self):
@@ -107,9 +101,9 @@ class TestJsParser(TestCase):
         file_dir = str.format("{}/testing_files/test_file_bad.js",
                               self.current_dir).replace("\\", "/")
         js_file = self.file_reader.get_file_contents(file_dir)
-        self.js_parser.set_file(js_file)
-        self.js_parser.parse_file()
-        actual_classes = self.js_parser.get_classes()
+        parser_director = ParserDirector(JSParserBuilder())
+        self.parser = parser_director.make_parser(js_file)
+        actual_classes = self.parser.get_classes()
         self.assertEqual(expected_classes, actual_classes)
 
     def test_entire_dir(self):
@@ -121,7 +115,7 @@ class TestJsParser(TestCase):
         self.dir_reader.set_directory(dir)
         for aDir in self.dir_reader.get_file_dirs():
             js_file = self.file_reader.get_file_contents(aDir)
-            self.js_parser.set_file(js_file)
-            self.js_parser.parse_file()
-        actual_class_count = len(self.js_parser.get_classes())
+            parser_director = ParserDirector(JSParserBuilder())
+            self.parser = parser_director.make_parser(js_file)
+        actual_class_count = len(self.parser.get_classes())
         self.assertEqual(expected_class_count, actual_class_count)
