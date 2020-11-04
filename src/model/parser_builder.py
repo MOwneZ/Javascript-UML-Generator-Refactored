@@ -14,8 +14,7 @@ class ParserBuilder(metaclass=ABCMeta):
         self._file = new_file
 
     def add_class(self, new_class):
-        if new_class not in self._all_my_classes:
-            self._all_my_classes.append(new_class)
+        self._all_my_classes.append(new_class)
 
     @abstractmethod
     def parse_file(self):

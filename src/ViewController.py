@@ -42,7 +42,7 @@ class View(Cmd):
 
     def do_set_output_dir(self, arg):
         output_dir = arg.replace("\\", "/")
-        if self.dir_reader.is_valid_folder_dir(output_dir):
+        if self.dir_reader.is_valid_dir(output_dir):
             self.output_file_dir = output_dir
             self.selected_output_dir = True
             print(str.format("Output directory set to [{}].",
@@ -110,8 +110,8 @@ class View(Cmd):
         """This command uses all the information provided so far and will
         produce a diagram based on input. """
         directory = arg.replace("\\", "/")
-        if self.dir_reader.is_valid_js_dir(directory) \
-                or self.dir_reader.is_valid_js_file(directory) \
+        if self.dir_reader.is_valid_dir(directory) \
+                or self.dir_reader.is_valid_file(directory) \
                 and self.selected_file_type \
                 and self.selected_output_dir is True:
 

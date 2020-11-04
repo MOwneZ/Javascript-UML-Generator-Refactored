@@ -45,7 +45,7 @@ class TestFileReader(TestCase):
 
     def test_good_output_dir(self):
         """Tests to ensure controller identifies good directory."""
-        arg = "C://"
+        arg = getcwd().replace("\\", "/")
         correct_output = str.format("Output directory set to [{}].", arg)
         with patch('sys.stdout', new=StringIO()) as print_output:
             self.the_view.do_set_output_dir(arg)
