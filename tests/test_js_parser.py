@@ -2,6 +2,7 @@ from unittest import TestCase
 from os import getcwd
 from src.model.js_parser_builder import JSParserBuilder
 from src.model.parser_director import ParserDirector
+from src.model.js_file_reader_strategy import JSFileReader
 from src.model.file_reader import FileReader
 from src.model.directory_reader import DirectoryReader
 
@@ -10,7 +11,7 @@ class TestJsParser(TestCase):
 
     def setUp(self):
         self.parser = None
-        self.file_reader = FileReader()
+        self.file_reader = FileReader(JSFileReader())
         self.dir_reader = DirectoryReader()
         self.current_dir = getcwd() + "/tests"
 

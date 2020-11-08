@@ -1,7 +1,8 @@
-from src.model.file_reader import FileReader
+from src.model.js_file_reader_strategy import JSFileReader
 from src.model.js_parser_builder import JSParserBuilder
 from src.model.parser_director import ParserDirector
 from src.model.directory_reader import DirectoryReader
+from src.model.file_reader import FileReader
 from cmd import Cmd
 from os import listdir
 
@@ -21,7 +22,7 @@ class View(Cmd):
         self.output_file_dir = ""
         self.selected_output_dir = False
         self.selected_file_type = False
-        self.file_reader = FileReader()
+        self.file_reader = FileReader(JSFileReader())
         self.dir_reader = DirectoryReader()
         self.parser = None
 
