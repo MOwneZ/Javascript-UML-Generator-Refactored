@@ -11,8 +11,7 @@ class PYFileReader(ReaderStrategy):
         py_file.close()
 
     def is_valid_file(self, new_dir):
-        if str(new_dir).endswith(".js"):
-            return True
+        return str(new_dir).endswith(".py")
 
     def is_valid_dir(self, new_dir):
         return path.isfile(new_dir)
