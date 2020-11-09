@@ -21,7 +21,7 @@ class TestFileReader(TestCase):
 
     def test_read_py_file(self):
         """This tests to ensure it can correctly read a .py file contents"""
-        file_dir = str.format("{}/testing_files/test_file_1.py",
+        file_dir = str.format("{}/testing_files/py_files/test_file_1.py",
                               self.current_dir).replace("\\", "/")
         expected_file_contents = 'class TestClass:\n'\
                                  '    def __init__(self):\n'\
