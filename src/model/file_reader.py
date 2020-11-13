@@ -1,8 +1,8 @@
-from src.model.reader_strategy import ReaderStrategy
+from src.model.reader_template import ReaderTemplate
 
 
 class FileReader:
-    def __init__(self, new_reader_strategy: ReaderStrategy):
+    def __init__(self, new_reader_strategy: ReaderTemplate):
         self.reader_strategy = new_reader_strategy
 
     def check_if_valid_dir(self, new_dir):

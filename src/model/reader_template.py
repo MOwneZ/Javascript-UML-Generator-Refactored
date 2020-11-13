@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class ReaderStrategy(metaclass=ABCMeta):
+class ReaderTemplate(metaclass=ABCMeta):
     def __init__(self):
         self._file_dir = ""
         self._file_contents = ""

@@ -114,7 +114,7 @@ class TestFileReader(TestCase):
             self.assertEqual(expected,
                              print_output.getvalue().rstrip())
 
-    def test_create_uml_working(self):
+    def test_create_js_uml_working(self):
         """Tests controller to correctly create an array of classes."""
         expected_classes = [
             {
@@ -131,6 +131,30 @@ class TestFileReader(TestCase):
                 'methods': ['constructor']
             }]
         arg = "{}/tests/testing_files/test_single_js_file".format(getcwd())
+        arg_output_dir = "C:/"
+        arg_file_type = "jpg"
+        self.the_view.do_set_output_dir(arg_output_dir)
+        self.the_view.do_set_file_type(arg_file_type)
+        self.the_view.do_create_uml(arg)
+        self.assertEqual(expected_classes,
+                         self.the_view.parser.get_classes())
+
+    def test_create_py_uml_working(self):
+        """Tests controller to correctly create an array of classes."""
+        print("running test for py")
+        expected_classes = [{
+            'attributes': ['attribute1', 'attribute2', 'attribute3'],
+            'methods': ['__init__'],
+            'name': 'TestClass1'},
+            {
+                'attributes': ['attribute1', 'attribute2', 'attribute3'],
+                'methods': ['__init__'],
+                'name': 'TestClass2'},
+            {
+                'attributes': ['attribute1', 'attribute2', 'attribute3'],
+                'methods': ['__init__'],
+                'name': 'TestClass3'}]
+        arg = "{}/tests/testing_files/py_files".format(getcwd())
         arg_output_dir = "C:/"
         arg_file_type = "jpg"
         self.the_view.do_set_output_dir(arg_output_dir)

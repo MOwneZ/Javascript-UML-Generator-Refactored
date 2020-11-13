@@ -2,7 +2,7 @@ from unittest import TestCase
 from os import getcwd
 from src.model.py_parser_builder import PYParserBuilder
 from src.model.parser_director import ParserDirector
-from src.model.py_file_reader_strategy import PYFileReader
+from src.model.py_file_reader import PYFileReader
 from src.model.file_reader import FileReader
 from src.model.directory_reader import DirectoryReader
 

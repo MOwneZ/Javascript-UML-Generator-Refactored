@@ -1,8 +1,9 @@
-from src.model.js_file_reader_strategy import JSFileReader
+from src.model.js_file_reader import JSFileReader
 from src.model.js_parser_builder import JSParserBuilder
+from src.model.py_parser_builder import PYParserBuilder
 from src.model.parser_director import ParserDirector
 from src.model.directory_reader import DirectoryReader
-from src.model.file_reader import FileReader
+from src.model.py_file_reader import PYFileReader
 from cmd import Cmd
 from os import listdir
 
@@ -22,7 +23,7 @@ class View(Cmd):
         self.output_file_dir = ""
         self.selected_output_dir = False
         self.selected_file_type = False
-        self.file_reader = FileReader(JSFileReader())
+        self.file_reader = None
         self.dir_reader = DirectoryReader()
         self.parser = None
 
@@ -43,7 +44,7 @@ class View(Cmd):
 
     def do_set_output_dir(self, arg):
         output_dir = arg.replace("\\", "/")
-        if self.dir_reader.is_valid_dir(output_dir):
+        if self.dir_reader.is_valid_output_dir(output_dir):
             self.output_file_dir = output_dir
             self.selected_output_dir = True
             print(str.format("Output directory set to [{}].",
@@ -115,13 +116,18 @@ class View(Cmd):
                 or self.dir_reader.is_valid_file(directory) \
                 and self.selected_file_type \
                 and self.selected_output_dir is True:
-
             for file in listdir(directory):
-
                 file_dir = "{}/{}".format(directory, file)
-                a_file = self.file_reader.get_file_contents(file_dir)
-                parser_director = ParserDirector(JSParserBuilder())
-                self.parser = parser_director.make_parser(a_file)
+                if file_dir.endswith(".js"):
+                    self.file_reader = JSFileReader()
+                    a_file = self.file_reader.get_file_contents(file_dir)
+                    parser_director = ParserDirector(JSParserBuilder())
+                    self.parser = parser_director.make_parser(a_file)
+                else:
+                    self.file_reader = PYFileReader()
+                    parser_director = ParserDirector(PYParserBuilder())
+                    a_file = self.file_reader.get_file_contents(file_dir)
+                    self.parser = parser_director.make_parser(a_file)
                 for aClass in self.parser.get_classes():
                     print(aClass)
         else:

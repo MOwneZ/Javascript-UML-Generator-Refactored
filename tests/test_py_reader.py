@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.model.py_file_reader_strategy import PYFileReader
+from src.model.py_file_reader import PYFileReader
 from src.model.file_reader import FileReader
 from os import getcwd
 

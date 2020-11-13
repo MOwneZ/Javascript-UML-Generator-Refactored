@@ -1,17 +1,18 @@
 from os import path
-from src.model.reader_strategy import ReaderStrategy
+from src.model.reader_template import ReaderTemplate
 
 
-class PYFileReader(ReaderStrategy):
+class JSFileReader(ReaderTemplate):
     def _read_file(self):
-        py_file = open(self.__file_dir)
-        self.__file_contents = py_file.readlines()
+        js_file = open(self.__file_dir)
+        self.__file_contents = js_file.readlines()
         for line in self.__file_contents:
             self._clean_file_contents += line
-        py_file.close()
+        js_file.close()
 
     def is_valid_file(self, new_dir):
-        return str(new_dir).endswith(".py")
+        if str(new_dir).endswith(".js"):
+            return True
 
     def is_valid_dir(self, new_dir):
         return path.isfile(new_dir)

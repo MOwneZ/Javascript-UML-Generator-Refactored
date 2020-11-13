@@ -2,7 +2,7 @@ from unittest import TestCase
 from os import getcwd
 from src.model.js_parser_builder import JSParserBuilder
 from src.model.parser_director import ParserDirector
-from src.model.js_file_reader_strategy import JSFileReader
+from src.model.js_file_reader import JSFileReader
 from src.model.file_reader import FileReader
 from src.model.directory_reader import DirectoryReader
 

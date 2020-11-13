@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.model.js_file_reader_strategy import JSFileReader
+from src.model.js_file_reader import JSFileReader
 from src.model.file_reader import FileReader
 from os import getcwd
 

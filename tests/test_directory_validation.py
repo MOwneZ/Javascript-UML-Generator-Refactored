@@ -45,16 +45,16 @@ class TestValidateDirectory(TestCase):
         invalid_dir = self.current_dir + "@@@INVALID_DIR"
         self.assertFalse(self.dir_reader.is_valid_dir(invalid_dir))
 
-    def test_good_js_dir(self):
+    def test_good_py_dir(self):
         """Tests to see whether a provided correct directory contains at
-        least 1 js file. """
-        valid_dir = str.format("{}/testing_files",
+        least 1 py file. """
+        valid_dir = str.format("{}/testing_files/py_files",
                                self.current_dir).replace("\\", "/")
         self.assertTrue(self.dir_reader.is_valid_dir(valid_dir))
 
-    def test_bad_js_dir(self):
+    def test_bad_py_dir(self):
         """Tests to see whether a provided correct directory contains at
-        least no js files. """
+        least no py files. """
         invalid_dir = "C:/"
         self.assertFalse(self.dir_reader.is_valid_dir(invalid_dir))
 

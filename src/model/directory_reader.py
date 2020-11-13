@@ -14,8 +14,8 @@ class DirectoryReader:
 
     def is_valid_file(self, new_file_path):
         """Will return true if the provided path\
-         is a javascript file. (.js)"""
-        return path.isfile(new_file_path) and  \
+         is a javascript file. (.js or .py)"""
+        return path.isfile(new_file_path) and \
                new_file_path.endswith((".js", ".py"))
 
     def is_valid_dir(self, new_folder_path):
@@ -27,6 +27,9 @@ class DirectoryReader:
                 if str(file).endswith((".js", ".py")):
                     return True
         return False
+
+    def is_valid_output_dir(self, new_folder_path):
+        return path.isdir(new_folder_path)
 
     def __set_file_dirs(self):
         for file in self.__all_my_files:
